@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calorie Counter</title>
+</head>
+
+<body>
+
+<h1>Calorie Counter</h1>
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    <input
+        type="text"
+        name="name"
+        placeholder="Food Name"
+        required>
+
+    <input
+        type="number"
+        name="calories"
+        placeholder="Calories"
+        required>
+
+    <button>Add Food</button>
+
+</form>
+
+<hr>
+
+<h2>Today's Foods</h2>
+
+<ul>
+
+{% for food in foods %}
+
+<li>
+
+{{ food.name }}
+
+-
+
+{{ food.calories }}
+
+calories
+
+<a href="{% url 'delete' food.id %}">
+
+Delete
+
+</a>
+
+</li>
+
+{% endfor %}
+
+</ul>
+
+<h2>
+
+Total Calories:
+
+{{ total }}
+
+</h2>
+
+<a href="{% url 'reset' %}">
+
+Reset Day
+
+</a>
+
+</body>
+</html>

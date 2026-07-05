@@ -16,8 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-      path('', include('calorieApp.urls')),
+    path('', include('calorieApp.urls')),
+     path('', views.index, name='home'),
+    path('delete/<int:id>/', views.delete_food, name='delete'),
+    path('reset/', views.reset, name='reset'),
 ]
